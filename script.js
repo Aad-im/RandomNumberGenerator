@@ -1,4 +1,17 @@
 const generatedNumbers = []; // Array to store generated numbers
+const guessedNumbers = [];
+
+const guessInput = document.getElementById('guessInput');
+const guessButton = document.getElementById('guessButton');
+
+guessButton.addEventListener('click', () => {
+    const guessedNumber = parseInt(guessInput.value, 10);
+    if (!isNaN(guessedNumber)) {
+        guessedNumbers.push(guessedNumber);
+        updateGuessedNumbers();
+        guessInput.value = ''; // Clear the input field
+    }
+});
 
 function generateRandomNumber() {
     const randomNumber = Math.floor(Math.random() * 100); // Change range as needed
@@ -12,6 +25,12 @@ function updateNumberList() {
     const numberListElement = document.getElementById('numberList');
     numberListElement.innerHTML = generatedNumbers.map(number => `<li>${number}</li>`).join('');
 }
+
+function updateGuessedNumbers() {
+    const guessedNumbersElement = document.getElementById('guessedNumbers');
+    guessedNumbersElement.innerHTML = guessedNumbers.map(number => `<li>${number}</li>`).join('');
+}
+
 
 function startScheduledRandomNumberGenerator() {
 
